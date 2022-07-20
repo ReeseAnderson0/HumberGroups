@@ -1,0 +1,49 @@
+﻿@model HumberStudentGroup.ADO.Group
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["UserId"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+    else
+    {
+        ViewBag.UserId = Session["UserId"];
+        ViewBag.Author = Session["Author"];
+    }
+}
+
+<h2>@Model.Title</h2>
+<p>@Model.Desc</p>
+<p>Group Owner: @ViewBag.Author</p>
+
+
+<h1>Members Of Group</h1>
+<ul>
+@foreach (var user in Model.Users)
+{
+    <li>@user.Username</li>
+}
+</ul>
+
+<p>
+    @if (@Model.AuthorId == ViewBag.UserId)
+    {
+        @Html.ActionLink("Edit | ", "Edit", new { id = Model.Id })
+    }
+    else
+    {
+        if (@Model.Users.Any(u => u.Id == ViewBag.UserId))
+        {
+            @Html.ActionLink("Leave | ", "Leave", new { id = Model.Id })
+        }
+        else
+        {
+            @Html.ActionLink("Join | ", "Join", new { id = Model.Id })
+        }
+    }
+
+
+    @Html.ActionLink("Back to List", "Index")
+</p>

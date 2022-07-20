@@ -1,0 +1,22 @@
+﻿@model IEnumerable<HumberStudentGroup.ADO.Group>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["UserId"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Homepage</title>
+</head>
+<body>
+    <h1>Welcome to HumberGroups</h1>
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿@model HumberStudentGroup.ADO.User
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .loginDiv {
+        position: absolute;
+        left: 45%;
+        top: 30%;
+        margin-left: -50px;
+    }
+</style>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>User Login</title>
+</head>
+<body>
+    <h2 style="text-align: center; color: orange">HumberGroups Login</h2>
+    <div class="loginDiv">
+        @using (Html.BeginForm("AutherizeLogin", "Login", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.Username)
+                    </td>
+                    <td>
+                        @Html.EditorFor(m => m.Username)
+                        @Html.ValidationMessageFor(m => m.Username)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.Password)
+                    </td>
+                    <td>
+                        @Html.PasswordFor(m => m.Password)
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </td>
+                </tr>
+                <tr><td><br /></td></tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("Create Account", "Create", "Users")
+                    </td>
+                    <td style="padding-left: 3rem;">
+                        <input type="submit" value="Login" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+</body>
+</html>
