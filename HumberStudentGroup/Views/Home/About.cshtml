@@ -1,0 +1,54 @@
+﻿@model IEnumerable<HumberStudentGroup.ADO.Group>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["Username"] == null)
+    {
+        ViewBag.UserLoggedinMessage = "Currently Not Signed In";
+    } else
+    {
+        ViewBag.UserLoggedinMessage = "Currently Signed In as " + Session["Username"];
+    }
+}
+
+<style>
+
+</style>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>About HumberGroups</title>
+</head>
+<body>
+    <div>
+        <small style="float: right; position: relative;padding: 5px;">@ViewBag.UserLoggedinMessage</small><br />
+    </div>
+    <h1 style="text-align: center;">About to HumberGroups</h1>
+    <div style="text-align: center; padding-top: 25px">
+        <p>
+            Lorem ipsum dolor sit amet. Est voluptatem aliquid eos mollitia itaque quo architecto delectus.<br>
+            Et omnis aperiam a dolore aspernatur ut earum provident quo autem necessitatibus aut Quis magni.<br>
+            Ut officiis molestiae quo autem voluptas ea numquam dignissimos ipsum ipsum eos accusantium magni<br>
+            et adipisci quam ut nostrum ipsum. Et possimus omnis in quis repudiandae et suscipit expedita et<br>
+            sint voluptas non libero beatae 33 earum eligendi At optio similique.
+        </p>
+    </div>
+    <div style="padding-top: 50px;">
+        <p>
+            Et vitae voluptatibus ut nobis nostrum ut enim quos. Ea autem obcaecati aut omnis internos qui consequatur sint est fugit quis.
+        </p>
+    </div>
+    <div style="padding-top: 50px;">
+        <p>
+            Lorem ipsum dolor sit amet. Est voluptatem aliquid eos mollitia itaque quo architecto delectus.<br>
+            Et omnis aperiam a dolore aspernatur ut earum provident quo autem necessitatibus aut Quis magni.<br>
+            Ut officiis molestiae quo autem voluptas ea numquam dignissimos ipsum ipsum eos accusantium magni<br>
+            et adipisci quam ut nostrum ipsum. Et possimus omnis in quis repudiandae et suscipit expedita et<br>
+            sint voluptas non libero beatae 33 earum eligendi At optio similique.
+        </p>
+    </div>
+</body>
+</html>

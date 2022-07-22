@@ -16,5 +16,9 @@ namespace HumberStudentGroup.Controllers
                 return View(context.Groups.ToList());
             }
         }
+        public ActionResult About()
+        {
+            return View();
+        }
     }
 }

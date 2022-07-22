@@ -29,6 +29,7 @@ namespace HumberStudentGroup.Controllers
                 {
                     var sessionUser = context.Users.Single(m => m.Username == user.Username);
                     HttpContext.Session.Add("UserId", sessionUser.Id);
+                    HttpContext.Session.Add("Username", sessionUser.Username);
                     return RedirectToAction("Index", "Home");
                 }
             }

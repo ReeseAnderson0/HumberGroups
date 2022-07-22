@@ -1,8 +1,14 @@
 ﻿@model IEnumerable<HumberStudentGroup.ADO.Group>
 
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["Username"] == null)
+    {
+        ViewBag.UserLoggedinMessage = "Currently Not Signed In";
+    } else
+    {
+        ViewBag.UserLoggedinMessage = "Currently Signed In as " + Session["Username"];
+    }
 }
 
 <style>
@@ -43,6 +49,7 @@
     <title>Homepage</title>
 </head>
 <body>
+    <small style="float: right; position: relative;padding: 5px;">@ViewBag.UserLoggedinMessage</small>
     <h1>Welcome to HumberGroups</h1>
     <div style=" padding-top: 25px;">
         <div style="float: left; width: 30%;">
@@ -59,7 +66,14 @@
         </div>
         <div style="float: right; width: 40%;">
             <div class="rightSide-buttonDiv">
-                @Html.ActionLink("Sign in", "Index", "Login", null, new { @class = "btn btn-success btn-large btn-signin" })
+                @if (Session["UserId"] == null)
+                {
+                    @Html.ActionLink("Sign in", "Index", "Login", null, new { @class = "btn btn-success btn-large btn-signin" })
+                }
+                else
+                {
+                    @Html.ActionLink("Sign Out", "Signout", "Users", null, new { @class = "btn btn-danger btn-large btn-signin" })
+                }
             </div>
             <p>
                 Lorem ipsum dolor sit amet, ipsum praesent est et, id sed libris latine delicatissimi, per stet illum praesent ad.
