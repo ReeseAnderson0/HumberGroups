@@ -93,7 +93,7 @@
                     @Html.LabelFor(m => m.Password)
                 </div>
                 <div>
-                    @Html.PasswordFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { @required = "required" })
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
             </div>

@@ -12,6 +12,23 @@
     }
 }
 
+<style>
+    .searchField {
+        border: 2px solid black;
+        border-radius: 20px;
+        font-size: 1.5rem;
+        padding-left: 20px;
+    }
+
+    input.SearchTerm:active, input.SearchTerm:focus {
+        border: 2px solid green;
+    }
+
+    .searchBar {
+        font-size: 1.5rem;
+    }
+</style>
+
 <h2>Humber Study Groups</h2>
 <small>
     @Html.ActionLink("Sign Out", "Signout", "Users")
@@ -20,40 +37,39 @@
 <p>
     @Html.ActionLink("Create A Study Group", "Create")
 </p>
+<form asp-controller="Users" asp-action="Index" method="get">
+    <p class="searchBar">
+        <b>Search: </b><input class="searchField" type="text" name="SearchTerm" placeholder="Enter a Key word"/>
+        <input type="submit" value="Filter" class="btn btn-primary"/>
+        <input type="submit" value="Clear" class="btn btn-danger"/>
+    </p>
+</form>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Desc)
-        </th>
-        <th>
-            @Html.DisplayName("Member Count")
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Title)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Desc)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Users.Count)
-    </td>
-    <td>
-        @if (item.AuthorId == ViewBag.UserId)
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Title)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Desc)</th>
+            <th scope="col">@Html.DisplayName("Member Count")</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Desc)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
         {
-            @Html.ActionLink("Edit | ", "Edit", new { id = item.Id })
-            @Html.ActionLink("Delete | ", "Delete", new { id = item.Id })
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.Desc)</td>
+                <td>@Html.DisplayFor(modelItem => item.Users.Count)</td><td>
+                    @if (item.AuthorId == ViewBag.UserId)
+                    {
+                        @Html.ActionLink("Edit | ", "Edit", new { id = item.Id })
+                        @Html.ActionLink("Delete | ", "Delete", new { id = item.Id })
+                    }
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                </td>
+            </tr>
         }
-        @Html.ActionLink("Details", "Details", new { id = item.Id })
-    </td>
-</tr>
-}
-
+    </tbody>
 </table>

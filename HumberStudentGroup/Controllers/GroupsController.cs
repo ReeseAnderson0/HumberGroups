@@ -14,9 +14,14 @@ namespace HumberStudentGroup.Controllers
     {
         private HumberDBEntities db = new HumberDBEntities();
 
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
-            return View(db.Groups.ToList());
+            var Groups = from g in db.Groups select g;
+            if (searchTerm != null)
+            {
+                Groups = Groups.Where(g => g.Title.Contains(searchTerm) || g.Desc.Contains(searchTerm));
+            }
+            return View(Groups.ToList().OrderByDescending(g => g.Users.Count));
         }
 
         public ActionResult Details(int id)
