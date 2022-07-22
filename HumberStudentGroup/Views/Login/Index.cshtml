@@ -57,6 +57,12 @@
     .btnLogin:hover {
         background-color: #CC9900;
     }
+
+    a:hover {
+        color: #CC9900;
+    }
+
+
 </style>
 
 <!DOCTYPE html>
@@ -91,7 +97,7 @@
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
             </div>
-            <input class="btnLogin" type="submit" value="Login" />
+            <input class="btn btnLogin" type="submit" value="Login" />
         }
     </div>
 </body>

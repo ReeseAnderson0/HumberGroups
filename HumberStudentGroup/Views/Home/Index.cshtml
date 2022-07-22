@@ -3,11 +3,37 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    if (Session["UserId"] == null)
-    {
-        Response.Redirect("~/Login/Index");
-    }
 }
+
+<style>
+    .leftSide-buttonDiv {
+        padding-top: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .rightSide-buttonDiv {
+        padding-bottom: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn {
+        border-radius: 15px;
+    }
+
+    .btn-signin {
+        margin: auto;
+        width: 60%;
+    }
+
+    .btn-create {
+        margin: auto;
+        width: 80%;
+    }
+</style>
 
 
 <!DOCTYPE html>
@@ -18,5 +44,41 @@
 </head>
 <body>
     <h1>Welcome to HumberGroups</h1>
+    <div style=" padding-top: 25px;">
+        <div style="float: left; width: 30%;">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+                id est laborum.
+            </p>
+            <div class="leftSide-buttonDiv">
+                @Html.ActionLink("Create Account", "Create", "Users", null, new { @class = "btn btn-primary btn-large btn-create" })
+            </div>
+        </div>
+        <div style="float: right; width: 40%;">
+            <div class="rightSide-buttonDiv">
+                @Html.ActionLink("Sign in", "Index", "Login", null, new { @class = "btn btn-success btn-large btn-signin" })
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet, ipsum praesent est et, id sed libris latine delicatissimi, per stet illum praesent ad.
+                Ut vix error inermis. Quo noster insolens deseruisse eu, doctus maluisset referrentur ex est, at nam munere dissentiunt.
+                Ius cu invidunt lobortis indoctum, usu id omnis illum docendi, nobis consul ei pri. Te etiam discere ius, ne vero
+                intellegam per, justo verterem necessitatibus usu ad. Ne mel ullum errem forensibus.Ius ut mollis deterruisset,
+                consul admodum eleifend est ad, pri ne possit referrentur. Errem clita mea at, eum exerci pertinacia id, ut vis debet eligendi deleniti.
+            </p>
+            <p>
+                Eu mei hinc dolores intellegat, ea elitr eruditi evertitur vel. Sit novum everti rationibus id, nisl malis fugit usu ex, sit affert eruditi
+                scribentur in. Cu soleat postea graeco usu, indoctum intellegat ex eum. Expetendis suscipiantur ad mea.
+            </p>
+            <p>
+
+                Id saepe animal laoreet ius, consequat cotidieque ex est. Ex tota partem efficiendi nam, epicuri nominati mei ea.
+                Ex tritani oportere usu. Utinam doctus pertinax sea an, in duis populo viderer sed.
+                Vel putant regione ancillae ne, mutat nostrud consequuntur no his, quis audire delicatissimi in sit.
+            </p>
+        </div>
+    </div>
 </body>
 </html>
