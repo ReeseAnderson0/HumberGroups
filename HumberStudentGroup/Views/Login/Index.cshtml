@@ -1,15 +1,61 @@
 ﻿@model HumberStudentGroup.ADO.User
 
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
 <style>
+    body {
+        background-color: #000033;
+        font-family: Open Sans ExtraBold;
+    }
+
     .loginDiv {
         position: absolute;
         left: 45%;
-        top: 30%;
+        top: 25%;
         margin-left: -50px;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .loginfield {
+        padding-bottom: 2rem;
+    }
+
+    .loginDiv .loginTitle {
+        padding-bottom: 50px;
+        color: #CC9900;
+        text-align: center;
+        font-size: 4rem;
+        font-weight: 600;
+    }
+
+    .loginfield input {
+        border: 1px solid;
+        border-radius: 20px;
+        font-size: 3rem;
+        padding-left: 20px;
+    }
+
+    .loginfield label {
+        color: white;
+        text-decoration: underline;
+    }
+
+    .btnLogin {
+        width: 100%;
+        border-radius: 5px;
+        height: 4rem;
+        background: #009BE0;
+        color: white;
+    }
+
+    .loginfield input:focus {
+        color: #009BE0;
+        background: black;
+    }
+
+    .btnLogin:hover {
+        background-color: #CC9900;
     }
 </style>
 
@@ -20,39 +66,32 @@
     <title>User Login</title>
 </head>
 <body>
-    <h2 style="text-align: center; color: orange">HumberGroups Login </h2>
     <div class="loginDiv">
+        <h2 class="loginTitle">Login</h2>
         @using (Html.BeginForm("AutherizeLogin", "Login", FormMethod.Post))
         {
-            <table>
-                <tr>
-                    <td>
-                        @Html.LabelFor(m => m.Username)
-                    </td>
-                    <td>
-                        @Html.EditorFor(m => m.Username)
-                        @Html.ValidationMessageFor(m => m.Username)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.LabelFor(m => m.Password)
-                    </td>
-                    <td>
-                        @Html.PasswordFor(m => m.Password)
-                        @Html.ValidationMessageFor(m => m.Password)
-                    </td>
-                </tr>
-                <tr><td><br /></td></tr>
-                <tr>
-                    <td>
-                        @Html.ActionLink("Create Account", "Create", "Users")
-                    </td>
-                    <td style="padding-left: 3rem;">
-                        <input type="submit" value="Login" />
-                    </td>
-                </tr>
-            </table>
+            <div style="float: right;">
+                @Html.ActionLink("Create Account", "Create", "Users")
+            </div>
+            <div class="loginfield">
+                <div>
+                    @Html.LabelFor(m => m.Username)
+                </div>
+                <div>
+                    @Html.EditorFor(m => m.Username)
+                    @Html.ValidationMessageFor(m => m.Username)
+                </div>
+            </div>
+            <div class="loginfield">
+                <div>
+                    @Html.LabelFor(m => m.Password)
+                </div>
+                <div>
+                    @Html.PasswordFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+            </div>
+            <input class="btnLogin" type="submit" value="Login" />
         }
     </div>
 </body>
