@@ -32,6 +32,7 @@ namespace HumberStudentGroup.Controllers
                 return HttpNotFound();
             }
             var author = db.Users.Find(group.AuthorId);
+            Session["GroupId"] = group.Id;
             Session["Author"] = author.Username;
             return View(group);
         }
@@ -50,6 +51,7 @@ namespace HumberStudentGroup.Controllers
             {
                 var sessionUser = db.Users.Single(m => m.Id == group.AuthorId);
                 group.Users.Add(sessionUser);
+                group.Chat = new Chat();
                 db.Groups.Add(group);
                 db.SaveChanges();
                 return RedirectToAction("Index");

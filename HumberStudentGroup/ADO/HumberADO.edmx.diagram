@@ -4,10 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="50850c616b1649ba9214210413a58f12" Name="Diagram1">
-        <EntityTypeShape EntityType="HumberDBModel.Group" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HumberDBModel.User" Width="1.5" PointX="3.375" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="50850c616b1649ba9214210413a58f12" Name="Diagram1" ZoomLevel="62">
+        <EntityTypeShape EntityType="HumberDBModel.Group" Width="1.5" PointX="9.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HumberDBModel.User" Width="1.5" PointX="15.625" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="HumberDBModel.GroupUser" />
+        <EntityTypeShape EntityType="HumberDBModel.Chat" Width="1.5" PointX="9.375" PointY="4.375" />
+        <AssociationConnector Association="HumberDBModel.ChatGroup" />
+        <EntityTypeShape EntityType="HumberDBModel.Message" Width="1.5" PointX="9.375" PointY="7.75" />
+        <AssociationConnector Association="HumberDBModel.MessageChat" />
+        <AssociationConnector Association="HumberDBModel.MessageUser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

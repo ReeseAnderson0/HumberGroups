@@ -10,9 +10,78 @@
     else
     {
         ViewBag.UserId = Session["UserId"];
-        ViewBag.Author = Session["Author"];
     }
 }
+
+<style>
+    .chatbox-container {
+        margin-top: 50px;
+        float: right;
+        border: 7px solid black;
+    }
+
+    .chatbox {
+        top: 100%;
+        border-bottom: 10px solid black;
+    }
+
+    .checkbox-container {
+        vertical-align: middle;
+    }
+
+    .checkbox input {
+        width: 100%;
+    }
+
+    .MessageControls {
+        padding-left: 5px;
+    }
+
+    .messageSend .searchField {
+        border-radius: 10px;
+        padding-left: 5px;
+    }
+
+    .btn-message {
+        border-radius: 25px;
+    }
+</style>
+
+<div class="chatbox-container">
+    <div class="chatbox" style="overflow-y: scroll; height:400px; width: 300px">
+        <table>
+            <tbody>
+                @foreach (var message in Model.Chat.Messages.Select((value, i) => new { i, value }))
+                {
+                    if (message.i % 2 == 0)
+                    {
+                        <tr style="width: 100%">
+                            <td>
+                                &nbsp;@message.value.User.Username&nbsp;[@message.value.SentDate]: @message.value.Text
+                            </td>
+                        </tr>
+                    } else {
+                        <tr style="width: 100%; background-color: lightgray">
+                            <td>
+                                &nbsp;@message.value.User.Username&nbsp;[@message.value.SentDate]: @message.value.Text
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="MessageControls">
+        @using (Html.BeginForm("CreateMessage", "Chat", FormMethod.Get))
+        {
+            <p class="messageSend">
+                <b>Send: </b><input class="messageField" type="text" id="ChatMessage" name="ChatMessage" placeholder="..." />
+                <input type="submit" value="Send" class="btn btn-primary btn-message" />
+            </p>
+        }
+
+    </div>
+</div>
 
 <h2>@Model.Title</h2>
 <p>@Model.Desc</p>
@@ -21,10 +90,10 @@
 
 <h1>Members Of Group</h1>
 <ul>
-@foreach (var user in Model.Users)
-{
-    <li>@user.Username</li>
-}
+    @foreach (var user in Model.Users)
+    {
+        <li>@user.Username</li>
+    }
 </ul>
 
 <p>

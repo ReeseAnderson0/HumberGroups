@@ -12,21 +12,15 @@ namespace HumberStudentGroup.ADO
     using System;
     using System.Collections.Generic;
     
-    public partial class Group
+    public partial class Message
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Group()
-        {
-            this.Users = new HashSet<User>();
-        }
-    
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Desc { get; set; }
-        public int AuthorId { get; set; }
+        public int ChatId { get; set; }
+        public int UserId { get; set; }
+        public string SentDate { get; set; }
+        public string Text { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
         public virtual Chat Chat { get; set; }
+        public virtual User User { get; set; }
     }
 }
