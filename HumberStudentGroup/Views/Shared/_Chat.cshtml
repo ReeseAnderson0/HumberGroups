@@ -1,0 +1,83 @@
+﻿@model HumberStudentGroup.ADO.Chat
+
+@{
+    ViewBag.Title = "_Chat";
+    Layout = "~/Views/Shared/_LayoutGroup.cshtml";
+}
+
+<style>
+    .chatbox-container {
+        width: 350px;
+    }
+
+    .chatbox {
+        border: 3px solid black;    
+        height: 50vh;
+        overflow-y: scroll;
+    }
+
+    .checkbox-container {
+        vertical-align: middle;
+    }
+
+    .checkbox input {
+        width: 100%;
+    }
+
+    td {
+        width: 100%;
+    }
+
+    .MessageControls {
+        padding-top: 5px;
+        text-align: center;
+        border: 3px solid black;
+        background-color: lightgray;
+        padding-left: 5px;
+    }
+
+    .messageSend .searchField {
+        padding-left: 5px;
+    }
+
+    .btn-message {
+        border-radius: 25px;
+    }
+</style>
+
+<div class="chatbox-container">
+    <div class="chatbox" style="">
+        <table style="width: 100%;">
+            <tbody>
+                @foreach (var message in Model.Messages.Select((value, i) => new { i, value }))
+                {
+                    if (message.i % 2 == 0)
+                    {
+                        <tr style="width: 100%" class="chatbox-message ">
+                            <td class="chatbox-message ">
+                            &nbsp;@message.value.User.Username&nbsp;[@message.value.SentDate]: @message.value.Text
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr style="background-color: lightgray">
+                            <td class="chatbox-message ">
+                            &nbsp;@message.value.User.Username&nbsp;[@message.value.SentDate]: @message.value.Text
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="MessageControls">
+        @using (Html.BeginForm("CreateMessage", "Chat", FormMethod.Get))
+        {
+            <p class="messageSend">
+                <b>Send: </b><input class="messageField" type="text" id="ChatMessage" name="ChatMessage" placeholder="..." />
+                <input type="submit" value="Send" class="btn btn-primary btn-message" />
+            </p>
+        }
+    </div>
+</div>

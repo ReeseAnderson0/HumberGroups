@@ -24,8 +24,10 @@ namespace HumberStudentGroup.Controllers
                 int GroupId = int.Parse(Session["GroupId"].ToString());
 
                 var group = context.Groups.Single(g => g.Id == GroupId);
-                // CREATE THE MESSAGE
+                // Create the Message Timestamp
                 string Date = DateTime.Now.ToString("MM/dd HH:mm");
+
+                // Creatiing the Message Obj
                 var message = new Message
                 {
                     Text = ChatMessage,
@@ -33,8 +35,11 @@ namespace HumberStudentGroup.Controllers
                     UserId = Int32.Parse(Session["UserId"].ToString()),
                     ChatId = GroupId,
                 };
+
+                // Applying the Message to the chat and saving
                 group.Chat.Messages.Add(message);
                 context.SaveChanges();
+
                 return RedirectToAction("Details", "Groups", group);
             }
         }
