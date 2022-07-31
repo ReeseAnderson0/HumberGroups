@@ -9,8 +9,12 @@
     }
 }
 
-<h2>Index</h2>
+<h2 style="text-align:center">Index</h2>
 
+
+<div style="padding-bottom: 5px;">
+    <input type="button" class="btn btn-success" value="Create User" onclick="location.href='@Url.Action("Create", "Users")'" />
+</div>
 <table class="table">
     <tr>
         <th>
@@ -21,21 +25,21 @@
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                <input type="button" class="btn btn-info" value="View User" onclick="location.href='@Url.Action("Details", "Users", new { id = item.Id })'" />
+                <input type="button" class="btn btn-warning" value="Edit User" onclick="location.href='@Url.Action("Edit", "Users", new { id = item.Id })'" />
+                <input type="button" class="btn btn-danger" value="Delete User" onclick="location.href='@Url.Action("Delete", "Users", new { id = item.Id })'" />
+            </td>
+        </tr>
+    }
 
 </table>
