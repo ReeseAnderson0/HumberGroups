@@ -27,7 +27,7 @@
     <p>Group Owner: @ViewBag.Author</p>
 
     <div>
-        <input type="button" class="btn btn-success" value="Create Post" onclick="location.href='@Url.Action("Create", "Posts")'" />
+        @Html.ActionLink("Create Post", "Create", "Posts", new { groupId = @Model.Id }, null)
     </div>
 
 
@@ -36,6 +36,19 @@
         @foreach (var user in Model.Users)
         {
             <li>@user.Username</li>
+        }
+    </ul>
+
+    <h1>Group Posts</h1>
+    <ul>
+        @foreach (var post in Model.Posts)
+        {
+            <div>
+                <h1>@post.Title</h1>
+                <div>
+                    <h1>@post.Body</h1>
+               </div>
+            </div>
         }
     </ul>
 

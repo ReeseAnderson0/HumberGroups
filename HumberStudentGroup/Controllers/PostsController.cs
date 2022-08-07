@@ -33,6 +33,7 @@ namespace HumberStudentGroup.Controllers
             return View(post);
         }
 
+
         public ActionResult Create()
         {
             return View();
@@ -41,17 +42,17 @@ namespace HumberStudentGroup.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body")] Post post)
+        public ActionResult Create(int? groupId, [Bind(Include = "Id,Title,Body")] Post post)
         {
             int userId = int.Parse(Session["UserId"].ToString());
             if (ModelState.IsValid)
             {
                 post.User = db.Users.Single(m => m.Id == userId);
+                post.Groups.Add(db.Groups.Single(g => g.Id == groupId));
                 db.Posts.Add(post);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(post);
         }
 
