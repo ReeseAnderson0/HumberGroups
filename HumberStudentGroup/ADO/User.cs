@@ -19,6 +19,7 @@ namespace HumberStudentGroup.ADO
         {
             this.Groups = new HashSet<Group>();
             this.Messages = new HashSet<Message>();
+            this.Posts = new HashSet<Post>();
         }
     
         public int Id { get; set; }
@@ -29,5 +30,7 @@ namespace HumberStudentGroup.ADO
         public virtual ICollection<Group> Groups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Message> Messages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

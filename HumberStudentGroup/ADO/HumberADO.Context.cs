@@ -29,5 +29,6 @@ namespace HumberStudentGroup.ADO
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Chat> Chats { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
     }
 }

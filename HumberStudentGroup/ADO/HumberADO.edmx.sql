@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/22/2022 17:50:22
--- Generated from EDMX file: E:\Github-Projects\HumberStudentGroup\ADO\HumberADO.edmx
+-- Date Created: 08/07/2022 18:23:18
+-- Generated from EDMX file: C:\Users\Reese\source\repos\HumberMain\HumberStudentGroup\ADO\HumberADO.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -89,10 +89,26 @@ CREATE TABLE [dbo].[Messages] (
 );
 GO
 
+-- Creating table 'Posts'
+CREATE TABLE [dbo].[Posts] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Title] nvarchar(max)  NOT NULL,
+    [Body] nvarchar(max)  NOT NULL,
+    [User_Id] int  NOT NULL
+);
+GO
+
 -- Creating table 'GroupUser'
 CREATE TABLE [dbo].[GroupUser] (
     [Groups_Id] int  NOT NULL,
     [Users_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'PostGroup'
+CREATE TABLE [dbo].[PostGroup] (
+    [Posts_Id] int  NOT NULL,
+    [Groups_Id] int  NOT NULL
 );
 GO
 
@@ -124,10 +140,22 @@ ADD CONSTRAINT [PK_Messages]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'Posts'
+ALTER TABLE [dbo].[Posts]
+ADD CONSTRAINT [PK_Posts]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- Creating primary key on [Groups_Id], [Users_Id] in table 'GroupUser'
 ALTER TABLE [dbo].[GroupUser]
 ADD CONSTRAINT [PK_GroupUser]
     PRIMARY KEY CLUSTERED ([Groups_Id], [Users_Id] ASC);
+GO
+
+-- Creating primary key on [Posts_Id], [Groups_Id] in table 'PostGroup'
+ALTER TABLE [dbo].[PostGroup]
+ADD CONSTRAINT [PK_PostGroup]
+    PRIMARY KEY CLUSTERED ([Posts_Id], [Groups_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -201,6 +229,45 @@ GO
 CREATE INDEX [IX_FK_MessageUser]
 ON [dbo].[Messages]
     ([UserId]);
+GO
+
+-- Creating foreign key on [User_Id] in table 'Posts'
+ALTER TABLE [dbo].[Posts]
+ADD CONSTRAINT [FK_PostUser]
+    FOREIGN KEY ([User_Id])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PostUser'
+CREATE INDEX [IX_FK_PostUser]
+ON [dbo].[Posts]
+    ([User_Id]);
+GO
+
+-- Creating foreign key on [Posts_Id] in table 'PostGroup'
+ALTER TABLE [dbo].[PostGroup]
+ADD CONSTRAINT [FK_PostGroup_Post]
+    FOREIGN KEY ([Posts_Id])
+    REFERENCES [dbo].[Posts]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Groups_Id] in table 'PostGroup'
+ALTER TABLE [dbo].[PostGroup]
+ADD CONSTRAINT [FK_PostGroup_Group]
+    FOREIGN KEY ([Groups_Id])
+    REFERENCES [dbo].[Groups]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PostGroup_Group'
+CREATE INDEX [IX_FK_PostGroup_Group]
+ON [dbo].[PostGroup]
+    ([Groups_Id]);
 GO
 
 -- --------------------------------------------------

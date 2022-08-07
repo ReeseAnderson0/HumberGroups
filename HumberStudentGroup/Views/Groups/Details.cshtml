@@ -26,6 +26,10 @@
     <p>@Model.Desc</p>
     <p>Group Owner: @ViewBag.Author</p>
 
+    <div>
+        <input type="button" class="btn btn-success" value="Create Post" onclick="location.href='@Url.Action("Create", "Posts")'" />
+    </div>
+
 
     <h1>Members Of Group</h1>
     <ul>
