@@ -1,0 +1,77 @@
+﻿@model HumberStudentGroup.Models.SearchModelView
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutGroup.cshtml";
+}
+
+<style>
+    .layout {
+        padding: 50px;
+    }
+</style>
+
+<div class="layout">
+    <h2 style="text-align: center;padding-bottom: 25px">Search Page</h2>
+
+    <form asp-action="Index" method="get">
+        <p class="searchBar" style="text-align: center">
+            <input style="padding-left: 5px;border-radius:2rem;border: 3px solid #123456; width: 300px;" class="searchField" type="text" name="SearchTerm" placeholder="Enter a Key word" />
+            <input type="submit" value="Search" class="btn btn-primary" />
+            <input type="submit" value="Clear" class="btn btn-danger" />
+        </p>
+    </form>
+
+    <h1>
+        Search List
+    </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Type</th>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Groups)
+            {
+                <tr>
+                    <th scope="row">Group</th>
+                    <th scope="row">@item.Id</th>
+                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                    <td>
+                        <input type="button" class="btn btn-info" value="View Group" onclick="location.href='@Url.Action("Details", "Groups", new { id = item.Id })'" />
+                        <input type="button" class="btn btn-warning" value="Edit Group" onclick="location.href='@Url.Action("Edit", "Groups", new { id = item.Id })'" />
+                        <input type="button" class="btn btn-danger" value="Delete Group" onclick="location.href='@Url.Action("Delete", "Groups", new { id = item.Id })'" />
+                    </td>
+                </tr>
+            }
+            @foreach (var item in Model.Posts)
+            {
+                <tr>
+                    <th scope="row">Post</th>
+                    <th scope="row">@item.Id</th>
+                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                    <td>
+                        <input type="button" class="btn btn-info" value="View Post" onclick="location.href='@Url.Action("Details", "Posts", new { id = item.Id })'" />
+                        <input type="button" class="btn btn-warning" value="Edit Post" onclick="location.href='@Url.Action("Edit", "Posts", new { id = item.Id })'" />
+                        <input type="button" class="btn btn-danger" value="Delete Post" onclick="location.href='@Url.Action("Delete", "Posts", new { id = item.Id })'" />
+                    </td>
+                </tr>
+            }
+            @foreach (var item in Model.Users)
+            {
+                <tr>
+                    <th scope="row">User</th>
+                    <th scope="row">@item.Id</th>
+                    <td>@Html.DisplayFor(modelItem => item.Username)</td>
+                    <td>
+                        <input type="button" class="btn btn-info" value="View User" onclick="location.href='@Url.Action("Details", "Users", new { id = item.Id })'" />
+                        <input type="button" class="btn btn-warning" value="Edit User" onclick="location.href='@Url.Action("Edit", "Users", new { id = item.Id })'" />
+                        <input type="button" class="btn btn-danger" value="Delete User" onclick="location.href='@Url.Action("Delete", "Users", new { id = item.Id })'" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
