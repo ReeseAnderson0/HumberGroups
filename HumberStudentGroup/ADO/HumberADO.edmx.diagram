@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="50850c616b1649ba9214210413a58f12" Name="Diagram1" ZoomLevel="97">
+      <Diagram DiagramId="50850c616b1649ba9214210413a58f12" Name="Diagram1" ZoomLevel="78">
         <EntityTypeShape EntityType="HumberDBModel.Group" Width="1.5" PointX="9.375" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HumberDBModel.User" Width="1.5" PointX="15.625" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="HumberDBModel.GroupUser" />

@@ -11,7 +11,10 @@ namespace HumberStudentGroup.ADO
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.DynamicData;
+    using System.ComponentModel.DataAnnotations;
+    using System.Globalization;
+
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,8 +26,13 @@ namespace HumberStudentGroup.ADO
         }
     
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Username is required.")]
         public string Username { get; set; }
+
+        [Required(ErrorMessage = "Password is required.")]
         public string Password { get; set; }
+        public string Type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Group> Groups { get; set; }

@@ -2,13 +2,6 @@
 
 @{
     Layout = "~/Views/Shared/_LayoutGroup.cshtml";
-    if (Session["Username"] == null)
-    {
-        ViewBag.UserLoggedinMessage = "Currently Not Signed In";
-    } else
-    {
-        ViewBag.UserLoggedinMessage = "Currently Signed In as " + Session["Username"];
-    }
 }
 
 <style>

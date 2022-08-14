@@ -76,10 +76,12 @@
             }
             <input type="button" class="btn btn-primary" value="Go Back" onclick="location.href='@Url.Action("Index", "Groups")'" />
         </p>
-        @Html.Partial("_Chat", Model.Chat)
+        <div style="padding-top: 25px">
+            @Html.Partial("_Chat", Model.Chat)
+        </div
         <div class="group-members">
             <div>
-                <input type="button" class="btn btn-success" value="Create Group Post" onclick="location.href='@Url.Action("Create", "Posts", new { id = @Model.Id }, null)'" />
+                <input type="button" class="btn btn-success" value="Create Group Post" onclick="location.href='@Url.Action("Create", "Posts", new { groupId = Model.Id })'" />
                 <input type="button" class="btn btn-success" value="Join Group" onclick="location.href='@Url.Action("Join", "Groups", null)'" />
             </div>
             <h4>Members Of Group</h4>
@@ -113,6 +115,7 @@
                         <div>
                             <p>@post.Body</p>
                             <p>Author: @post.User.Username</p>
+                            <input type="button" class="btn btn-danger" value="Delete Post" onclick="location.href='@Url.Action("Delete", "Posts", new { id = post.Id })'" />
                         </div>
                     </div>
                 }

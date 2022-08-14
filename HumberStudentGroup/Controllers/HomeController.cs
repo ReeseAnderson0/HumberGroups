@@ -13,6 +13,7 @@ namespace HumberStudentGroup.Controllers
         {
             using (HumberDBEntities context = new HumberDBEntities())
             {
+                // get the groups as index
                 return View(context.Groups.ToList());
             }
         }

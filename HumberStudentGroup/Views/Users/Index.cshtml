@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.Username)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Password)
+            @Html.DisplayNameFor(model => model.Type)
         </th>
         <th></th>
     </tr>
@@ -32,7 +32,7 @@
                 @Html.DisplayFor(modelItem => item.Username)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Password)
+                @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
                 <input type="button" class="btn btn-info" value="View User" onclick="location.href='@Url.Action("Details", "Users", new { id = item.Id })'" />

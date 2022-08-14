@@ -16,26 +16,31 @@ namespace HumberStudentGroup.Controllers
 
         public ActionResult Signout() 
         {
+            // if the user wants to sign out clear the session
             Session.Clear();
             return RedirectToAction("Index");
         }
 
         public ActionResult Index()
         {
+            // get the users from the database
             return View(db.Users.ToList());
         }
 
         public ActionResult Details(int? id)
         {
+            // check if the id is null
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            // find the user from the id
             User user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
+            // return the user view
             return View(user);
         }
 
@@ -49,8 +54,10 @@ namespace HumberStudentGroup.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Username,Password")] User user)
         {
+            // if the model is valid add it to the db
             if (ModelState.IsValid)
             {
+                user.Type = "Student";
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -61,15 +68,20 @@ namespace HumberStudentGroup.Controllers
 
         public ActionResult Edit(int? id)
         {
+            // check if the id is null
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            // find the user through its id
             User user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
+
+            // return the user view
             return View(user);
         }
 
@@ -77,8 +89,10 @@ namespace HumberStudentGroup.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Username,Password")] User user)
         {
+            // check if the user model is valid
             if (ModelState.IsValid)
             {
+                // apply chanes and save
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -92,11 +106,13 @@ namespace HumberStudentGroup.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            // find the uesr throught its id
             User user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
+            // return the user view
             return View(user);
         }
 
@@ -104,6 +120,7 @@ namespace HumberStudentGroup.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            // find the user that is going to be deleted
             User user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();

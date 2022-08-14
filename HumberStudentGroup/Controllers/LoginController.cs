@@ -19,6 +19,7 @@ namespace HumberStudentGroup.Controllers
         {
             using (HumberDBEntities context = new HumberDBEntities())
             {
+                // check if the user is in the system
                 var UserLogin = context.Users.Any(m => m.Username == user.Username && m.Password == user.Password);
                 if (!UserLogin)
                 {
@@ -26,9 +27,14 @@ namespace HumberStudentGroup.Controllers
                 }
                 else
                 {
+                    // create session variables to be used across the session
                     var sessionUser = context.Users.Single(m => m.Username == user.Username);
                     HttpContext.Session.Add("UserId", sessionUser.Id);
                     HttpContext.Session.Add("Username", sessionUser.Username);
+                    if (sessionUser.Type.Equals("Admin"))
+                    {
+                        HttpContext.Session.Add("AdminView", sessionUser.Id);
+                    }
                     return RedirectToAction("Index", "Home");
                 }
             }

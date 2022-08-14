@@ -11,7 +11,10 @@ namespace HumberStudentGroup.ADO
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.DynamicData;
+    using System.ComponentModel.DataAnnotations;
+    using System.Globalization;
+
     public partial class Group
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +25,9 @@ namespace HumberStudentGroup.ADO
         }
     
         public int Id { get; set; }
+        [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
+        [Required(ErrorMessage = "Desc is required.")]
         public string Desc { get; set; }
         public int AuthorId { get; set; }
     

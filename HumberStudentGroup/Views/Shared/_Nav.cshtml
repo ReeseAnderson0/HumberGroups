@@ -1,4 +1,15 @@
 ﻿
+@{  
+    if (Session["AdminView"] != null)
+    {
+        ViewBag.AdminMessage = "Admin access";
+    }
+    if (Session["Username"] != null)
+    {
+        //ViewBag.UserLoggedinMessage = "Currently Signed In as " + Session["Username"];
+    }
+}
+
 <style>
     body {
         color: #000033;
@@ -34,7 +45,8 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <a href="#" class="pull-left"><img width="32" src="https://play-lh.googleusercontent.com/If5h6y3M0SkncS1K2UBm6nqGIO0gCxBg6qhudY1k42-EzSSVWUNCigDFWLXiyzDI0oAk"></a>
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -50,4 +62,8 @@
             </ul>
         </div>
     </div>
+</div>
+<div>
+    <p style="float: right; color:red; position: relative;padding: 5px;">@ViewBag.AdminMessage</p>
+    <p style="float: right; color:black; position: relative;padding: 5px;">@ViewBag.UserLoggedinMessage</p>
 </div>

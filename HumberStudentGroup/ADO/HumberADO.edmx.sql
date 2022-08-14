@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/07/2022 18:23:18
--- Generated from EDMX file: C:\Users\Reese\source\repos\HumberMain\HumberStudentGroup\ADO\HumberADO.edmx
+-- Date Created: 08/13/2022 21:02:55
+-- Generated from EDMX file: C:\Users\Reese\Desktop\GithubProjects\HumberGroups\HumberGroupsMain\HumberStudentGroup\ADO\HumberADO.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -30,6 +30,15 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_MessageUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Messages] DROP CONSTRAINT [FK_MessageUser];
 GO
+IF OBJECT_ID(N'[dbo].[FK_PostUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Posts] DROP CONSTRAINT [FK_PostUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PostGroup_Post]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PostGroup] DROP CONSTRAINT [FK_PostGroup_Post];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PostGroup_Group]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PostGroup] DROP CONSTRAINT [FK_PostGroup_Group];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -47,8 +56,14 @@ GO
 IF OBJECT_ID(N'[dbo].[Messages]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Messages];
 GO
+IF OBJECT_ID(N'[dbo].[Posts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Posts];
+GO
 IF OBJECT_ID(N'[dbo].[GroupUser]', 'U') IS NOT NULL
     DROP TABLE [dbo].[GroupUser];
+GO
+IF OBJECT_ID(N'[dbo].[PostGroup]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PostGroup];
 GO
 
 -- --------------------------------------------------
@@ -68,7 +83,8 @@ GO
 CREATE TABLE [dbo].[Users] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Username] varchar(50)  NOT NULL,
-    [Password] varchar(50)  NOT NULL
+    [Password] varchar(50)  NOT NULL,
+    [Type] nvarchar(max)  NOT NULL
 );
 GO
 

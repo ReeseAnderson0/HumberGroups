@@ -16,20 +16,24 @@ namespace HumberStudentGroup.Controllers
 
         public ActionResult Index()
         {
+            // get the db posts to index
             return View(db.Posts.ToList());
         }
 
         public ActionResult Details(int? id)
         {
+            // chck if the id is null
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            // find the posts from the database
             Post post = db.Posts.Find(id);
             if (post == null)
             {
                 return HttpNotFound();
             }
+            //return the post
             return View(post);
         }
 
@@ -44,9 +48,11 @@ namespace HumberStudentGroup.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(int? groupId, [Bind(Include = "Id,Title,Body")] Post post)
         {
+            // find the user from the session
             int userId = int.Parse(Session["UserId"].ToString());
             if (ModelState.IsValid)
             {
+                // create the posts and save
                 post.User = db.Users.Single(m => m.Id == userId);
                 post.Groups.Add(db.Groups.Single(g => g.Id == groupId));
                 db.Posts.Add(post);
@@ -62,6 +68,7 @@ namespace HumberStudentGroup.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            // find the post from the id
             Post post = db.Posts.Find(id);
             if (post == null)
             {
@@ -75,6 +82,7 @@ namespace HumberStudentGroup.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Body")] Post post)
         {
+            // if the model is valid proform edits
             if (ModelState.IsValid)
             {
                 db.Entry(post).State = EntityState.Modified;
@@ -90,6 +98,7 @@ namespace HumberStudentGroup.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            // find the post for deleting
             Post post = db.Posts.Find(id);
             if (post == null)
             {
@@ -102,6 +111,7 @@ namespace HumberStudentGroup.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            // if the post is confiremd to delete
             Post post = db.Posts.Find(id);
             db.Posts.Remove(post);
             db.SaveChanges();

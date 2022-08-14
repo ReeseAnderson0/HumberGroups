@@ -11,7 +11,10 @@ namespace HumberStudentGroup.ADO
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.DynamicData;
+    using System.ComponentModel.DataAnnotations;
+    using System.Globalization;
+
     public partial class Message
     {
         public int Id { get; set; }
